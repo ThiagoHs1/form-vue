@@ -28,6 +28,10 @@
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors">Enviar</button>
       </div>
 
+      <div v-if="successMessage" class="mb-4 text-green-600 font-bold">
+        {{ successMessage }}
+      </div>
+
 
     </form>
   </div>
@@ -42,7 +46,8 @@ export default {
       name: '',
       email: '',
       phone: '',
-      errors: {}
+      errors: {},
+      successMessage: ''
     };
   },
   methods: {
@@ -89,6 +94,14 @@ export default {
               }
             `
           });
+          // Se a resposta for bem-sucedida, limpar os campos e exibir a mensagem de sucesso
+          if (response.data) {
+            this.successMessage = 'Formulário enviado com sucesso!'; // Define a mensagem de sucesso
+            this.name = ''; // Limpa o campo de nome
+            this.email = ''; // Limpa o campo de email
+            this.phone = ''; // Limpa o campo de telefone
+            this.errors = {}; // Limpa os erros (se houver)
+          }
           console.log('Resposta do servidor:', response.data);
         } catch (error) {
           console.error('Erro ao enviar os dados:', error);
