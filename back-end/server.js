@@ -8,12 +8,13 @@ const schema = buildSchema(`
     users: [User]
   }
   type Mutation {
-    addUser(name: String!, email: String!): User
+    addUser(name: String!, email: String!, phone: String!): User
   }
   type User {
     id: ID!
     name: String!
     email: String!
+    phone: String!
   }
 `);
 
@@ -21,9 +22,9 @@ const root = {
   users: async () => {
     return await knex('users').select('*');
   },
-  addUser: async ({ name, email }) => {
-    const [id] = await knex('users').insert({ name, email }).returning('id');
-    return { id, name, email };
+  addUser: async ({ name, email, phone  }) => {
+    const [id] = await knex('users').insert({ name, email, phone  }).returning('id');
+    return { id, name, email, phone  };
   }
 };
 
