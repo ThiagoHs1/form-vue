@@ -22,4 +22,4 @@ Este projeto é uma aplicação simples de formulário construída com Vue.js no
 - PostgreSQL
 - npm (Node Package Manager)
 
-# Projeto realizado para fins de estudo com um apalicação full stack
+# Projeto realizado para fins de estudo com um aplicação full stack
